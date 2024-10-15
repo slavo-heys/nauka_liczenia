@@ -1,4 +1,4 @@
-# nauka_liczenia
+# nauka_liczenia v 1.0
 Naucz swoje dziecko dodawania, odejmowania, mnożenia i dzielenia. Korzystając z programu masz wgląd
 do statystyki ilości poprawnych i błęnych odpowiedzi. W opcji AUTO możesz również sprawdzić błędnie
 policzone działania.
