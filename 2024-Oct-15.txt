@@ -1,0 +1,14 @@
+2024-Oct-15       18 : 3  = 9   |    powinno byc 6.0
+2024-Oct-15       18 : 2  = 8   |    powinno byc 9.0
+2024-Oct-15       54 : 9  = 8   |    powinno byc 6.0
+2024-Oct-15       24 : 6  = 2   |    powinno byc 4.0
+2024-Oct-15       45 : 5  = 5   |    powinno byc 9.0
+2024-Oct-15       72 : 8  = 7   |    powinno byc 9.0
+2024-Oct-15       3  - 2  = 2   |    powinno byc 1  
+2024-Oct-15       21 : 3  = 6   |    powinno byc 7.0
+2024-Oct-15       63 : 9  = 5   |    powinno byc 7.0
+2024-Oct-15       1  * 2  = 3   |    powinno byc 2  
+2024-Oct-15       24 : 8  = 4   |    powinno byc 3.0
+2024-Oct-15       20 : 10 = 20  |    powinno byc 2.0
+2024-Oct-15       18 : 6  = 4   |    powinno byc 3.0
+2024-Oct-15       54 : 9  = 3   |    powinno byc 6.0
