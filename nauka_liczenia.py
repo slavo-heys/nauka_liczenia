@@ -58,7 +58,9 @@ class Program:
         self.menu()
 
     def menu(self):
-        os.system("cls")
+        # czyszczenie ekranu
+        self.clear()
+
         print(self.CYELLOW +
               "\n\tWitaj w programie \"Nauka Liczenia\" w wersji 1.0"+self.CEND)
         print(self.CYELLOW+"\t-----------------------------------------------"+self.CEND)
@@ -67,8 +69,8 @@ class Program:
         print("\t 2. odejmowanie     5. dzielenie")
         print("\t 3. AUTO            "+self.CRED +
               "0. wyjscie z programu\n"+self.CEND)
-        self.wybor = input("\t? ")
 
+        self.wybor = input("\t? ")
         if self.wybor == "1":
             self.dodawanie()
         elif self.wybor == "2":
@@ -85,21 +87,30 @@ class Program:
             exit(0)
 
     def dodawanie(self):
-        os.system("cls")
+        # czyszczenie ekranu
+        self.clear()
+
+        # menu
         self.punkt = 0
         print(self.CYELLOW+"\n\tJesteś w dziale \"Dodawanie\":"+self.CEND)
         print(self.CYELLOW+"\t----------------------------\n"+self.CEND)
         self.ileDzialan = input("\tIle działań chcesz rozwiązać ? ")
         self.podstawa = input("\tPodaj najwyższą liczbę podstawy dodawania ? ")
+
         # losowanie liczb na podstawie zebranych danych
         for self.i in range(1, int(self.ileDzialan)+1):
-            os.system("cls")
+            # czyszczenie ekranu
+            self.clear()
+
+            # losowanie
             self.l1 = random.randint(1, int(self.podstawa))
             self.l2 = random.randint(1, int(self.podstawa))
+
             # wyswietlenie dzialania do rozwiazania
             self.wynik = self.l1 + self.l2
             print("\n\t\tDziałanie numer: {}".format(self.i))
             self.odpowiedz = input("\n\t{} + {} = ".format(self.l1, self.l2))
+
             # sprawdzanie wynikow
             if int(self.odpowiedz) == int(self.wynik):
                 self.punkt += 1
@@ -110,22 +121,31 @@ class Program:
                 print(
                     self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(self.wynik)+self.CEND)
                 os.system("pause")
+
+        # czyszczenie ekranu
+        self.clear()
+
         # wyswietlenie wynikow na ekranie
-        os.system("cls")
-        print("\t\nKoniec, Twoje wyniki:")
-        print("\t\n - ilość rozwiązanych zadań: "+self.CYELLOW +
+        print(self.CBOLD + self.CVIOLET+"\t\nKoniec, Twoje wyniki:"+self.CEND)
+        print("\t - ilość rozwiązanych zadań: "+self.CYELLOW +
               "{}".format(self.ileDzialan)+self.CEND)
-        print("\t\n - poprawnych odpowiedzi: " +
+        print("\t - poprawnych odpowiedzi: " +
               self.CGREEN+"{}".format(self.punkt)+self.CEND)
-        print("\t\n - blędnych odpowiedzi: "+self.CRED +
-              "{}".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+        print("\t - blędnych odpowiedzi: "+self.CRED +
+              "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+
         # zapis do pliku txt
         fraza = "DODAWANIE - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {}".format(
             self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt))
         self.zapisz(fraza)
+        os.system("pause")
+
+        # czyszczenie ekranu
+        self.clear()
+
         # dodatkowe menu
-        self.wybor = input(
-            "\n\n  Co dalej:\n1. powtórz dodawanie\n2. powróć do menu głównego\n0. wyjscie z programu\n\n? ")
+        self.wybor = input(self.CBOLD + self.CVIOLET+"\n Co dalej:"+self.CEND +
+                           "\n\t1. powtórz dodawanie\n\t2. powróć do menu głównego\n\t0. wyjscie z programu\n\n? ")
         if self.wybor == "1":
             self.dodawanie()
         elif self.wybor == "2":
@@ -134,18 +154,26 @@ class Program:
             exit(0)
 
     def odejmowanie(self):
-        os.system("cls")
+        # czyszczenie ekranu
+        self.clear()
+
+        # menu
         self.punkt = 0
         print(self.CYELLOW+"\n\tJesteś w dziale \"Odejmowanie\":"+self.CEND)
-        print(self.CYELLOW+"\t------------------------------\n")
+        print(self.CYELLOW+"\t------------------------------\n"+self.CEND)
         self.ileDzialan = input("\tIle działań chcesz rozwiązać ? ")
         self.podstawa = input(
-            "\tPodaj najwyższą liczbę podstawy odejmowania ? "+self.CEND)
+            "\tPodaj najwyższą liczbę podstawy odejmowania ? ")
+
         # losowanie liczb na podstawie zebranych danych
         for self.i in range(1, int(self.ileDzialan)+1):
-            os.system("cls")
+            # czyszczenie ekranu
+            self.clear()
+
+            # losowanie
             self.l1 = random.randint(1, int(self.podstawa))
             self.l2 = random.randint(1, int(self.podstawa))
+
             # wyswietlenie dzialania do rozwiazania
             if self.l1 > self.l2:
                 self.wynik = self.l1 - self.l2
@@ -168,22 +196,31 @@ class Program:
                 print(
                     self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(self.wynik)+self.CEND)
                 os.system("pause")
-        # wyswietlenie wynikow na ekranie
-        os.system("cls")
+
+        # czyszczenie ekranu
+        self.clear()
+
+        # wyświetlenie wyników
         print("\t\nKoniec, Twoje wyniki:")
-        print("\t\n - ilość rozwiązanych zadań: "+self.CYELLOW +
+        print("\t - ilość rozwiązanych zadań: "+self.CYELLOW +
               "{}".format(self.ileDzialan)+self.CEND)
-        print("\t\n - poprawnych odpowiedzi: " +
+        print("\t - poprawnych odpowiedzi: " +
               self.CGREEN+"{}".format(self.punkt)+self.CEND)
-        print("\t\n - blędnych odpowiedzi: "+self.CRED +
-              "{}".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+        print("\t - blędnych odpowiedzi: "+self.CRED +
+              "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+
         # zapis do pliku txt
         fraza = "ODEJMOWANIE - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {}".format(
             self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt))
         self.zapisz(fraza)
+        os.system("pause")
+
+        # czyszczenie ekranu
+        self.clear()
+
         # dodatkowe menu
-        self.wybor = input(
-            "\n\n  Co dalej:\n1. powtórz odejmowanie\n2. powróć do menu głównego\n0. wyjscie z programu\n\n? ")
+        self.wybor = input(self.CBOLD + self.CVIOLET+"\n Co dalej:"+self.CEND +
+                           "\n\t1. powtórz odejmowanie\n\t2. powróć do menu głównego\n\t0. wyjscie z programu\n\n? ")
         if self.wybor == "1":
             self.odejmowanie()
         elif self.wybor == "2":
@@ -192,24 +229,33 @@ class Program:
             exit(0)
 
     def mnozenie(self):
-        os.system("cls")
+        # czyszczenie ekranu
+        self.clear()
+
+        # menu
         self.punkt = 0
         print(self.CYELLOW+"\n\tJesteś w dziale \"Mnożenie\":"+self.CEND)
-        print(self.CYELLOW+"\t------------------------------\n")
+        print(self.CYELLOW+"\t------------------------------\n"+self.CEND)
         self.ileDzialan = input("\tIle działań chcesz rozwiązać ? ")
         self.podstawa = input(
-            "\tPodaj najwyższą liczbę podstawy iloczynu (max = 10)? "+self.CEND)
+            "\tPodaj najwyższą liczbę podstawy iloczynu (max = 10)? ")
         if int(self.podstawa) > 10:
             self.podstawa = 10
+
         # losowanie liczb na podstawie zebranych danych
         for self.i in range(1, int(self.ileDzialan)+1):
-            os.system("cls")
+            # czyszczenie ekranu
+            self.clear()
+
+            # losowanie
             self.l1 = random.randint(1, int(self.podstawa))
             self.l2 = random.randint(1, int(self.podstawa))
+
             # wyswietlenie dzialania do rozwiazania
             self.wynik = self.l1 * self.l2
             print("\n\t\tDziałanie numer: {}".format(self.i))
             self.odpowiedz = input("\n\t{} * {} = ".format(self.l1, self.l2))
+
             # sprawdzanie wynikow
             if int(self.odpowiedz) == int(self.wynik):
                 self.punkt += 1
@@ -220,22 +266,31 @@ class Program:
                 print(
                     self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(self.wynik)+self.CEND)
                 os.system("pause")
+
+        # czyszczenie ekranu
+        self.clear()
+
         # wyswietlenie wynikow na ekranie
-        os.system("cls")
         print("\t\nKoniec, Twoje wyniki:")
-        print("\t\n - ilość rozwiązanych zadań: "+self.CYELLOW +
+        print("\t - ilość rozwiązanych zadań: "+self.CYELLOW +
               "{}".format(self.ileDzialan)+self.CEND)
-        print("\t\n - poprawnych odpowiedzi: " +
+        print("\t - poprawnych odpowiedzi: " +
               self.CGREEN+"{}".format(self.punkt)+self.CEND)
-        print("\t\n - blędnych odpowiedzi: "+self.CRED +
-              "{}".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+        print("\t - blędnych odpowiedzi: "+self.CRED +
+              "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+
         # zapis do pliku txt
         fraza = "MNOZENIE - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {}".format(
             self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt))
         self.zapisz(fraza)
+        os.system("pause")
+
+        # czyszczenie ekranu
+        self.clear()
+
         # dodatkowe menu
-        self.wybor = input(
-            "\n\n  Co dalej:\n1. powtórz mnożenie\n2. powróć do menu głównego\n0. wyjscie z programu\n\n? ")
+        self.wybor = input(self.CBOLD + self.CVIOLET+"\n  Co dalej:"+self.CEND +
+                           "\n\t1. powtórz mnożenie\n\t2. powróć do menu głównego\n\t0. wyjscie z programu\n\n? ")
         if self.wybor == "1":
             self.mnozenie()
         elif self.wybor == "2":
@@ -244,25 +299,34 @@ class Program:
             exit(0)
 
     def dzielenie(self):
-        os.system("cls")
+        # czyszczenie ekranu
+        self.clear()
+
+        # menu
         self.punkt = 0
         print(self.CYELLOW+"\n\tJesteś w dziale \"Dzielenie\":"+self.CEND)
-        print(self.CYELLOW+"\t------------------------------\n")
-        self.ileDzialan = input("\tIle działań chcesz rozwiązać ? "+self.CEND)
+        print(self.CYELLOW+"\t------------------------------\n"+self.CEND)
+        self.ileDzialan = input("\tIle działań chcesz rozwiązać ? ")
         self.podstawa = input(
             "\tPodaj najwyższą liczbę podstawy ilorazu (max = 10)? ")
         if int(self.podstawa) > 10:
             self.podstawa = 10
+
         # losowanie liczb na podstawie zebranych danych
         for self.i in range(1, int(self.ileDzialan)+1):
-            os.system("cls")
+            # czyszczenie ekranu
+            self.clear()
+
+            # losowanie i 3 zmienna
             self.l1 = random.randint(1, int(self.podstawa))
             self.l2 = random.randint(1, int(self.podstawa))
             self.l3 = self.l1 * self.l2
+
             # wyswietlenie dzialania do rozwiazania
             self.wynik = self.l3 / self.l2
             print("\n\t\tDziałanie numer: {}".format(self.i))
             self.odpowiedz = input("\n\t{} : {} = ".format(self.l3, self.l2))
+
             # sprawdzanie wynikow
             if int(self.odpowiedz) == int(self.wynik):
                 self.punkt += 1
@@ -273,22 +337,31 @@ class Program:
                 print(self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(
                     int(self.wynik))+self.CEND)
                 os.system("pause")
+
+        # czyszczenie ekranu
+        self.clear()
+
         # wyswietlenie wynikow na ekranie
-        os.system("cls")
         print("\t\nKoniec, Twoje wyniki:")
-        print("\t\n - ilość rozwiązanych zadań: "+self.CYELLOW +
+        print("\t - ilość rozwiązanych zadań: "+self.CYELLOW +
               "{}".format(self.ileDzialan)+self.CEND)
-        print("\t\n - poprawnych odpowiedzi: " +
+        print("\t - poprawnych odpowiedzi: " +
               self.CGREEN+"{}".format(self.punkt)+self.CEND)
-        print("\t\n - blędnych odpowiedzi: "+self.CRED +
-              "{}".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+        print("\t - blędnych odpowiedzi: "+self.CRED +
+              "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+
         # zapis do pliku txt
         fraza = "DZIELENIE - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {}".format(
             self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt))
         self.zapisz(fraza)
+        os.system("pause")
+
+        # czyszczenie ekranu
+        self.clear()
+
         # dodatkowe menu
-        self.wybor = input(
-            "\n\n  Co dalej:\n1. powtórz dzielenie\n2. powróć do menu głównego\n0. wyjscie z programu\n\n? ")
+        self.wybor = input(self.CBOLD + self.CVIOLET+"\nCo dalej:"+self.CEND +
+                           "\n\t1. powtórz dzielenie\n\t2. powróć do menu głównego\n\t0. wyjscie z programu\n\n? ")
         if self.wybor == "1":
             self.dzielenie()
         elif self.wybor == "2":
@@ -297,25 +370,33 @@ class Program:
             exit(0)
 
     def auto(self):
-        os.system("cls")
+        # czyszczenie ekranu
+        self.clear()
+
+        # menu
         self.punkt = 0
         print(self.CYELLOW+"\t\n Jesteś w dziale \"AUTO\", uważnie sprawdzaj znak działania"+self.CEND)
         print(self.CYELLOW+"\t\n --------------------------------------------------------\n\n"+self.CEND)
         self.ileDzialan = input("\tIle działań chcesz rozwiązać ? ")
         self.podstawa = input("\tPodaj najwyższą liczbę podstawy działań ? ")
         czas_start = datetime.now()
+
         for self.i in range(1, int(self.ileDzialan)+1):
-            os.system("cls")
+            # czyszczenie ekranu
+            self.clear()
+
             print("\t\n Działanie numer: {}".format(self.i))
+
             # losowanie dzialania: 1 - dodawanie, 2. odejmowanie, 3. mnozenie, 4. dzielenie
             i_los = random.randint(1, 5)
             if i_los == 1:
-                # dodawanie
+                # losowanie / dodawanie
                 self.l1 = random.randint(1, int(self.podstawa))
                 self.l2 = random.randint(1, int(self.podstawa))
                 self.wynik = self.l1 + self.l2
                 self.odpowiedz = input(
                     "\n\t{} + {} = ".format(self.l1, self.l2))
+
                 # sprawdzanie wynikow
                 if int(self.odpowiedz) == self.wynik:
                     self.punkt += 1
@@ -330,7 +411,7 @@ class Program:
                     self.zapisz_dzialania(fraza_dzialania)
                     os.system("pause")
             elif i_los == 2:
-                # odejmowanie
+                # losowanie / odejmowanie
                 self.l1 = random.randint(1, int(self.podstawa))
                 self.l2 = random.randint(1, int(self.podstawa))
                 if self.l1 > self.l2:
@@ -341,6 +422,7 @@ class Program:
                     self.wynik = self.l2 - self.l1
                     self.odpowiedz = input(
                         "\n\t{} - {} = ".format(self.l2, self.l1))
+
                  # sprawdzanie wynikow
                 if int(self.odpowiedz) == int(self.wynik):
                     self.punkt += 1
@@ -355,12 +437,13 @@ class Program:
                     self.zapisz_dzialania(fraza_dzialania)
                     os.system("pause")
             elif i_los == 3:
-                # mnozenie
+                # losowanie / mnozenie
                 self.l1 = random.randint(1, 10)
                 self.l2 = random.randint(1, 10)
                 self.wynik = self.l1 * self.l2
                 self.odpowiedz = input(
                     "\n\t{} * {} = ".format(self.l1, self.l2))
+
                 # sprawdzanie wynikow
                 if int(self.odpowiedz) == int(self.wynik):
                     self.punkt += 1
@@ -375,7 +458,7 @@ class Program:
                     self.zapisz_dzialania(fraza_dzialania)
                     os.system("pause")
             else:
-                # dzielenie
+                # losowanie / dzielenie
                 self.l1 = random.randint(1, 10)
                 self.l2 = random.randint(1, 10)
                 self.l3 = self.l1 * self.l2
@@ -383,6 +466,7 @@ class Program:
                 self.wynik = self.l3 / self.l2
                 self.odpowiedz = input(
                     "\n\t{} : {} = ".format(self.l3, self.l2))
+
                 # sprawdzanie wynikow
                 if int(self.odpowiedz) == self.wynik:
                     self.punkt += 1
@@ -396,6 +480,7 @@ class Program:
                         str(self.l3), str(self.l2), str(self.odpowiedz), str(self.wynik))
                     self.zapisz_dzialania(fraza_dzialania)
                     os.system("pause")
+
         # obliczanie czasu
         czas_koniec = datetime.now()
         czas_zostalo = (czas_koniec - czas_start).seconds
@@ -404,28 +489,33 @@ class Program:
             czas_zostalo = czas_zostalo/60
             czas_zostalo = round(czas_zostalo, 2)
             czas_zostalo_1 = str(czas_zostalo) + " min."
+
         # czyszczenie ekranu
-        try:
-            os.system("csl")
-        except:
-            os.system("clear")
+        self.clear()
+
         # wyświetlenie wyników
-        print("\t\nKoniec, Twoje wyniki:")
-        print("\t\n - czas rozpoczęcia: {}\n - czas zakończenia: {}\n - rozwiązanie zadań zajęło Ci: {}".format(
+        print(self.CBOLD + self.CVIOLET+"\t\nKoniec, Twoje wyniki:"+self.CEND)
+        print("\t - czas rozpoczęcia: {}\n\t - czas zakończenia: {}\n\t - rozwiązanie zadań zajęło Ci: {}".format(
             czas_start, czas_koniec, czas_zostalo_1))
-        print("\t\n - ilość rozwiązanych zadań: "+self.CYELLOW +
+        print("\t - ilość rozwiązanych zadań: "+self.CYELLOW +
               "{}".format(self.ileDzialan)+self.CEND)
-        print("\t\n - poprawnych odpowiedzi: " +
+        print("\t - poprawnych odpowiedzi: " +
               self.CGREEN+"{}".format(self.punkt)+self.CEND)
-        print("\t\n - blędnych odpowiedzi: "+self.CRED +
-              "{}".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+        print("\t - blędnych odpowiedzi: "+self.CRED +
+              "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
+
         # zapis do pliku txt
         fraza = "AUTO - ilosc zadan: {:3s} | poprawnych odpowiedzi: {:3s} | bledow: {:3s} | czas: : {:5s}".format(
             str(self.ileDzialan), str(self.punkt), str(int(self.ileDzialan) - int(self.punkt)), czas_zostalo_1)
         self.zapisz(fraza)
+        os.system("pause")
+
+        # czyszczenie ekranu
+        self.clear()
+
         # dodatkowe menu
-        self.wybor = input(
-            "\n\n  Co dalej:\n1. powtórz liczenie\n2. powróć do menu głównego\n0. wyjscie z programu\n\n? ")
+        self.wybor = input(self.CBOLD + self.CVIOLET+"\nCo dalej:"+self.CEND +
+                           "\n\t1. powtórz liczenie\n\t2. powróć do menu głównego\n\t0. wyjscie z programu\n\n? ")
         if self.wybor == "1":
             self.auto()
         elif self.wybor == "2":
@@ -449,6 +539,12 @@ class Program:
         plik = open(tytul, 'a')
         plik.writelines(str(fraza)+"\n")
         plik.close()
+
+    def clear(self):
+        try:
+            os.system("cls")
+        except:
+            os.system("clear")
 
 
 start = Program()
