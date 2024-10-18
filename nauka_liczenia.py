@@ -4,6 +4,7 @@ import random
 from datetime import datetime
 from datetime import datetime, timedelta
 import time
+from os import system, name
 
 # os.system('color')
 
@@ -541,10 +542,13 @@ class Program:
         plik.close()
 
     def clear(self):
-        try:
-            os.system("cls")
-        except:
-            os.system("clear")
+        # for windows
+        if name == 'nt':
+            _ = system('cls')
+
+        # for mac and linux(here, os.name is 'posix')
+        else:
+            _ = system('clear')
 
 
 start = Program()
