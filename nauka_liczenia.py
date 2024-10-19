@@ -12,7 +12,7 @@ from os import system, name
 class Program:
     def __init__(self):
         self.i = 0
-
+        self.list_temp = []
         self.CBOLD = '\33[1m'
         self.CITALIC = '\33[3m'
         self.CURL = '\33[4m'
@@ -57,7 +57,7 @@ class Program:
         self.CWHITEBG2 = '\33[107m'
         self.CEND = '\033[0m'
         self.menu()
-
+        
     def menu(self):
         # czyszczenie ekranu
         self.clear()
@@ -97,7 +97,7 @@ class Program:
         print(self.CYELLOW+"\t----------------------------\n"+self.CEND)
         self.ileDzialan = input("\tIle działań chcesz rozwiązać ? ")
         self.podstawa = input("\tPodaj najwyższą liczbę podstawy dodawania ? ")
-
+                
         # losowanie liczb na podstawie zebranych danych
         for self.i in range(1, int(self.ileDzialan)+1):
             # czyszczenie ekranu
@@ -109,20 +109,29 @@ class Program:
 
             # wyswietlenie dzialania do rozwiazania
             self.wynik = self.l1 + self.l2
-            print("\n\t\tDziałanie numer: {}".format(self.i))
-            self.odpowiedz = input("\n\t{} + {} = ".format(self.l1, self.l2))
 
-            # sprawdzanie wynikow
-            if int(self.odpowiedz) == int(self.wynik):
-                self.punkt += 1
-                print(
-                    self.CGREEN+"\t\n BRAWO!!! Wynik prawidłowy, zdobywasz 1 punkt.\n\n"+self.CEND)
-                os.system("pause")
+            #sprawdzanie czy dzialanie istnieje w liscie
+            self.dzialanie = str(self.l1)+"+"+str(self.l2)
+            spr = self.list_temp.count(self.dzialanie)
+            if spr == 0:
+                print("\n\t\tDziałanie numer: {}".format(self.i))
+                self.odpowiedz = input("\n\t{} + {} = ".format(self.l1, self.l2))
+                # dodanie rekordu do listy
+                self.list_temp.append(self.dzialanie)
+                # sprawdzanie wynikow
+                if int(self.odpowiedz) == int(self.wynik):
+                    self.punkt += 1
+                    print(
+                        self.CGREEN+"\t\n BRAWO!!! Wynik prawidłowy, zdobywasz 1 punkt.\n\n"+self.CEND)
+                    os.system("pause")
+                else:
+                    print(
+                        self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(self.wynik)+self.CEND)
+                    os.system("pause")
             else:
-                print(
-                    self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(self.wynik)+self.CEND)
-                os.system("pause")
-
+                continue
+        
+        os.system("pause")
         # czyszczenie ekranu
         self.clear()
 
@@ -148,8 +157,10 @@ class Program:
         self.wybor = input(self.CBOLD + self.CVIOLET+"\n Co dalej:"+self.CEND +
                            "\n\t1. powtórz dodawanie\n\t2. powróć do menu głównego\n\t0. wyjscie z programu\n\n? ")
         if self.wybor == "1":
+            self.list_temp.clear()
             self.dodawanie()
         elif self.wybor == "2":
+            self.list_temp.clear()
             self.menu()
         else:
             exit(0)
@@ -178,14 +189,28 @@ class Program:
             # wyswietlenie dzialania do rozwiazania
             if self.l1 > self.l2:
                 self.wynik = self.l1 - self.l2
-                print("\n\t\tDziałanie numer: {}".format(self.i))
-                self.odpowiedz = input(
-                    "\n\t{} - {} = ".format(self.l1, self.l2))
+                #sprawdzanie czy dzialanie istnieje w liscie
+                self.dzialanie = str(self.l1)+"-"+str(self.l2)
+                spr = self.list_temp.count(self.dzialanie)
+                if spr == 0:
+                    print("\n\t\tDziałanie numer: {}".format(self.i))
+                    self.odpowiedz = input(
+                        "\n\t{} - {} = ".format(self.l1, self.l2))
+                    self.list_temp.append(self.dzialanie)
+                else:
+                    continue
             else:
                 self.wynik = self.l2 - self.l1
-                print("\n\t\tDziałanie numer: {}".format(self.i))
-                self.odpowiedz = input(
-                    "\n\t{} - {} = ".format(self.l2, self.l1))
+                #sprawdzanie czy dzialanie istnieje w liscie
+                self.dzialanie = str(self.l2)+"-"+str(self.l1)
+                spr = self.list_temp.count(self.dzialanie)
+                if spr == 0:
+                    print("\n\t\tDziałanie numer: {}".format(self.i))
+                    self.odpowiedz = input(
+                        "\n\t{} - {} = ".format(self.l2, self.l1))
+                    self.list_temp.append(self.dzialanie)
+                else:
+                    continue
 
             # sprawdzanie wynikow
             if int(self.odpowiedz) == int(self.wynik):
@@ -198,6 +223,9 @@ class Program:
                     self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(self.wynik)+self.CEND)
                 os.system("pause")
 
+        # czyszczenie listy
+        self.list_temp.clear()
+        
         # czyszczenie ekranu
         self.clear()
 
@@ -254,20 +282,28 @@ class Program:
 
             # wyswietlenie dzialania do rozwiazania
             self.wynik = self.l1 * self.l2
-            print("\n\t\tDziałanie numer: {}".format(self.i))
-            self.odpowiedz = input("\n\t{} * {} = ".format(self.l1, self.l2))
 
-            # sprawdzanie wynikow
-            if int(self.odpowiedz) == int(self.wynik):
-                self.punkt += 1
-                print(
-                    self.CGREEN+"\t\n BRAWO!!! Wynik prawidłowy, zdobywasz 1 punkt.\n\n"+self.CEND)
-                os.system("pause")
-            else:
-                print(
-                    self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(self.wynik)+self.CEND)
-                os.system("pause")
+            #sprawdzanie czy dzialanie istnieje w liscie
+            self.dzialanie = str(self.l1)+"*"+str(self.l2)
+            spr = self.list_temp.count(self.dzialanie)
+            if spr == 0:
+                print("\n\t\tDziałanie numer: {}".format(self.i))
+                self.odpowiedz = input("\n\t{} * {} = ".format(self.l1, self.l2))
 
+                # sprawdzanie wynikow
+                if int(self.odpowiedz) == int(self.wynik):
+                    self.punkt += 1
+                    print(
+                        self.CGREEN+"\t\n BRAWO!!! Wynik prawidłowy, zdobywasz 1 punkt.\n\n"+self.CEND)
+                    os.system("pause")
+                else:
+                    print(
+                        self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(self.wynik)+self.CEND)
+                    os.system("pause")
+            else: continue
+
+        # czyszczenie listy
+        self.list_temp.clear()
         # czyszczenie ekranu
         self.clear()
 
@@ -325,19 +361,29 @@ class Program:
 
             # wyswietlenie dzialania do rozwiazania
             self.wynik = self.l3 / self.l2
-            print("\n\t\tDziałanie numer: {}".format(self.i))
-            self.odpowiedz = input("\n\t{} : {} = ".format(self.l3, self.l2))
 
-            # sprawdzanie wynikow
-            if int(self.odpowiedz) == int(self.wynik):
-                self.punkt += 1
-                print(
-                    self.CGREEN+"\t\n BRAWO!!! Wynik prawidłowy, zdobywasz 1 punkt.\n\n"+self.CEND)
-                os.system("pause")
+            #sprawdzanie czy dzialanie istnieje w liscie
+            self.dzialanie = str(self.l3)+""+str(self.l2)
+            spr = self.list_temp.count(self.dzialanie)
+            if spr == 0:
+                print("\n\t\tDziałanie numer: {}".format(self.i))
+                self.odpowiedz = input("\n\t{} : {} = ".format(self.l3, self.l2))
+
+                # sprawdzanie wynikow
+                if int(self.odpowiedz) == int(self.wynik):
+                    self.punkt += 1
+                    print(
+                        self.CGREEN+"\t\n BRAWO!!! Wynik prawidłowy, zdobywasz 1 punkt.\n\n"+self.CEND)
+                    os.system("pause")
+                else:
+                    print(self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(
+                        int(self.wynik))+self.CEND)
+                    os.system("pause")
             else:
-                print(self.CRED+"\t\n ZLE!!! Wynik jest nieprawidlowy, powinno byc: {} \n\n".format(
-                    int(self.wynik))+self.CEND)
-                os.system("pause")
+                continue
+        
+        # czyszczenie listy
+        self.list_temp.clear()
 
         # czyszczenie ekranu
         self.clear()

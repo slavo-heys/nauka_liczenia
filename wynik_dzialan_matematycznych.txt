@@ -24,3 +24,14 @@
 2024-Oct-17 DZIELENIE - ilosc zadan: 2 | poprawnych odpowiedzi: 2 | bledow: 0
 
 
+2024-Oct-19 DODAWANIE - ilosc zadan: 20 | poprawnych odpowiedzi: 0 | bledow: 20
+2024-Oct-19 DODAWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 0 | bledow: 5
+2024-Oct-19 DODAWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 0 | bledow: 5
+2024-Oct-19 DODAWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 1 | bledow: 4
+2024-Oct-19 DODAWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 0 | bledow: 5
+2024-Oct-19 DODAWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 0 | bledow: 5
+2024-Oct-19 DODAWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 0 | bledow: 5
+2024-Oct-19 DODAWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 5 | bledow: 0
+2024-Oct-19 DODAWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 5 | bledow: 0
+2024-Oct-19 ODEJMOWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 4 | bledow: 1
+2024-Oct-19 ODEJMOWANIE - ilosc zadan: 5 | poprawnych odpowiedzi: 5 | bledow: 0
