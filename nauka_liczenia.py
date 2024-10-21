@@ -63,7 +63,7 @@ class Program:
         self.clear()
 
         print(self.CYELLOW +
-              "\n\tWitaj w programie \"Nauka Liczenia\" w wersji 1.0"+self.CEND)
+              "\n\tWitaj w programie \"Nauka Liczenia\" w wersji 1.1"+self.CEND)
         print(self.CYELLOW+"\t-----------------------------------------------"+self.CEND)
         print("\n\n\tWybierz jedną z opcji:\n")
         print("\t 1. dodawanie       4. mnozenie")
