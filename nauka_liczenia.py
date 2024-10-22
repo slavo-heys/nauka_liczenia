@@ -61,10 +61,13 @@ class Program:
     def menu(self):
         # czyszczenie ekranu
         self.clear()
+        self.imie = input(self.CYELLOW +"\n\tJak masz na imię ? "+self.CEND)
 
-        print(self.CYELLOW +
-              "\n\tWitaj w programie \"Nauka Liczenia\" w wersji 1.1"+self.CEND)
-        print(self.CYELLOW+"\t-----------------------------------------------"+self.CEND)
+        # czyszczenie ekranu
+        self.clear()
+
+        print(self.CYELLOW + "\n\tWitaj " + self.imie + " w programie \"Nauka Liczenia\" w wersji 1.1"+self.CEND)
+        print(self.CYELLOW+"\t-----------------------------------------------"+self.CEND)        
         print("\n\n\tWybierz jedną z opcji:\n")
         print("\t 1. dodawanie       4. mnozenie")
         print("\t 2. odejmowanie     5. dzielenie")
@@ -145,8 +148,8 @@ class Program:
               "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
 
         # zapis do pliku txt
-        fraza = "DODAWANIE - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {}".format(
-            self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt))
+        fraza = "{:13s} - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {} | Osoba: {}".format("DODAWANIE",
+            self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt), self.imie)
         self.zapisz(fraza)
         os.system("pause")
 
@@ -239,8 +242,8 @@ class Program:
               "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
 
         # zapis do pliku txt
-        fraza = "ODEJMOWANIE - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {}".format(
-            self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt))
+        fraza = "{:13s} - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {} | Osoba: {}".format("ODEJMOWANIE",
+            self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt), self.imie)
         self.zapisz(fraza)
         os.system("pause")
 
@@ -317,8 +320,8 @@ class Program:
               "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
 
         # zapis do pliku txt
-        fraza = "MNOZENIE - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {}".format(
-            self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt))
+        fraza = "{:13s} - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {} | Osoba: {}".format("MNOZENIE",
+            self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt), self.imie)
         self.zapisz(fraza)
         os.system("pause")
 
@@ -398,8 +401,8 @@ class Program:
               "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
 
         # zapis do pliku txt
-        fraza = "DZIELENIE - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {}".format(
-            self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt))
+        fraza = "{:13s} - ilosc zadan: {} | poprawnych odpowiedzi: {} | bledow: {} | Osoba: {}".format("DZIELENIE",
+            self.ileDzialan, self.punkt, int(self.ileDzialan) - int(self.punkt), self.imie)
         self.zapisz(fraza)
         os.system("pause")
 
@@ -552,8 +555,8 @@ class Program:
               "{}\n\n".format(int(self.ileDzialan) - int(self.punkt))+self.CEND)
 
         # zapis do pliku txt
-        fraza = "AUTO - ilosc zadan: {:3s} | poprawnych odpowiedzi: {:3s} | bledow: {:3s} | czas: : {:5s}".format(
-            str(self.ileDzialan), str(self.punkt), str(int(self.ileDzialan) - int(self.punkt)), czas_zostalo_1)
+        fraza = "AUTO - ilosc zadan: {:3s} | poprawnych odpowiedzi: {:3s} | bledow: {:3s} | czas: {:5s} | Osoba: {}".format(
+            str(self.ileDzialan), str(self.punkt), str(int(self.ileDzialan) - int(self.punkt)), czas_zostalo_1, self.imie)
         self.zapisz(fraza)
         os.system("pause")
 
@@ -581,7 +584,7 @@ class Program:
     def zapisz_dzialania(self, dzialanie):
         now = datetime.now()
         data = now.strftime("%Y-%b-%d")
-        fraza = data + "   " + dzialanie
+        fraza = self.imie + "   " + data + "   " + dzialanie
         tytul = (now.strftime("%Y-%b-%d")+".txt")
         plik = open(tytul, 'a')
         plik.writelines(str(fraza)+"\n")
