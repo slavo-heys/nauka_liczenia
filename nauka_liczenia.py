@@ -136,7 +136,7 @@ class Program:
             else:
                 continue
         
-        os.system("pause")
+        #os.system("pause")
         # czyszczenie ekranu
         self.clear()
 
@@ -576,7 +576,16 @@ class Program:
             exit(0)
 
     def odczytaj(self):
-        pass
+        self.clear()
+        try:
+            with open("wynik_dzialan_matematycznych.txt", "r") as file:
+                # Odczytujemy kolejne linie z pliku
+                for line in file:
+                    print(line.strip())  # usuwamy białe znaki z końca i początku linii
+        except:
+            print(self.CRED+"\n\tNiestety plik z archiwum nie istnieje!\n\n"+self.CEND)
+            os.system("pause")
+            self.menu()
 
     def zapisz(self, wynik):
         now = datetime.now()

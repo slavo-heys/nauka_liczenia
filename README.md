@@ -18,3 +18,4 @@ poinformuj mnie o tym: slavoheys@gmail.com
 ## aktualizacja 22.10.2024
 - na początku programu dodałem kod który pobiera imie użytkownika, program w plikach txt umieszcza przy każdym
   wpisie o wynikach imie uczestnika nauki
+- dodałem do menu możliwość wczytywania wyników archiwalnych z wynikami liczenia
