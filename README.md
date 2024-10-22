@@ -14,3 +14,7 @@ poinformuj mnie o tym: slavoheys@gmail.com
 
 ## aktualizacja 19.10.2024
 - dodałem kod który zapobiega powtarzaniu się działań podczas testu
+
+## aktualizacja 22.10.2024
+- na początku programu dodałem kod który pobiera imie użytkownika, program w plikach txt umieszcza przy każdym
+  wpisie o wynikach imie uczestnika nauki
