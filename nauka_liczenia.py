@@ -71,8 +71,8 @@ class Program:
         print("\n\n\tWybierz jedną z opcji:\n")
         print("\t 1. dodawanie       4. mnozenie")
         print("\t 2. odejmowanie     5. dzielenie")
-        print("\t 3. AUTO            "+self.CRED +
-              "0. wyjscie z programu\n"+self.CEND)
+        print("\t 3. AUTO            6. wyświetl archiwalne wyniki")
+        print(self.CRED + "\n\t 0. wyjscie z programu\n"+self.CEND)
 
         self.wybor = input("\t? ")
         if self.wybor == "1":
@@ -85,6 +85,8 @@ class Program:
             self.mnozenie()
         elif self.wybor == "5":
             self.dzielenie()
+        elif self.wybor == "6":
+            self.odczytaj()
         elif self.wybor == "0":
             exit(0)
         else:
@@ -572,6 +574,9 @@ class Program:
             self.menu()
         else:
             exit(0)
+
+    def odczytaj(self):
+        pass
 
     def zapisz(self, wynik):
         now = datetime.now()
