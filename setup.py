@@ -11,7 +11,7 @@ from tkinter import *
 class Program:
     def __init__(self) -> None:        
         self.root = Tk()
-        self.root.title("Paper, Rock, Scissors")
+        self.root.title("Nauka liczenia v 2.0")
         self.root.geometry("800x600")
 
         # menu na listwie górnej
@@ -57,6 +57,9 @@ class Program:
         close_img = PhotoImage(file="close.png")
         suma_img = PhotoImage(file="sum.png")
         minus_img = PhotoImage(file="minus.png")
+        mnozenie_img = PhotoImage(file="mnozenie.png")
+        dzielenie_img = PhotoImage(file="dzielenie.png")
+        auto_img = PhotoImage(file="automat.png")
 
         filemenu = Menu(menu, tearoff=False)
         menu.add_cascade(label='Plik', menu=filemenu)
@@ -71,6 +74,10 @@ class Program:
         menu.add_cascade(label='Działania', menu=dzialaniamenu,)
         dzialaniamenu.add_command(label='Dodawanie', accelerator="Ctrl+D", command=self.dodawanie, image=suma_img, compound=LEFT)
         dzialaniamenu.add_command(label='Odejmowanie', accelerator="Ctrl+R", command=self.odejmowanie, image=minus_img, compound=LEFT)
+        dzialaniamenu.add_command(label='Mnożenie', accelerator="Ctrl+M", command=self.mnozenie, image=mnozenie_img, compound=LEFT)
+        dzialaniamenu.add_command(label='Dzielenie', accelerator="Ctrl+D", command=self.dzielenie, image=dzielenie_img, compound=LEFT)
+        dzialaniamenu.add_separator()
+        dzialaniamenu.add_command(label='Automat', accelerator="Ctrl+A", command=self.automat, image=auto_img, compound=LEFT)
         # deklaracja podmenu Pomoc na listwie
         helpmenu = Menu(menu, tearoff=False)
         menu.add_cascade(label='Pomoc', menu=helpmenu)
