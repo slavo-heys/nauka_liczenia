@@ -8,8 +8,6 @@ data rozpoczęcia: 27.10.2024
 
 from tkinter import *
 
-
-
 class Program:
     def __init__(self) -> None:        
         self.root = Tk()
@@ -32,11 +30,33 @@ class Program:
         self.root.bind_all("<Control-e>", self.zamknij_program)
         self.root.bind_all("<Control-E>", self.zamknij_program)
 
+        # skrót klawiszowy dodawanie
+        self.root.bind_all("<Control-s>", self.dodawanie)
+        self.root.bind_all("<Control-S>", self.dodawanie)
+
+        # skrót klawiszowy odejmowanie
+        self.root.bind_all("<Control-r>", self.odejmowanie)
+        self.root.bind_all("<Control-R>", self.odejmowanie)
+
+        # skrót klawiszowy mnozenie
+        self.root.bind_all("<Control-m>", self.mnozenie)
+        self.root.bind_all("<Control-M>", self.mnozenie)
+
+        # skrót klawiszowy dzielenie
+        self.root.bind_all("<Control-d>", self.dzielenie)
+        self.root.bind_all("<Control-D>", self.dzielenie)
+
+        # skrót klawiszowy automat
+        self.root.bind_all("<Control-a>", self.automat)
+        self.root.bind_all("<Control-A>", self.automat)
+
         # deklaracja ikon w przyciskach
         plik_img = PhotoImage(file="file.png")
         open_img = PhotoImage(file="open.png")
         save_img = PhotoImage(file="save.png")
         close_img = PhotoImage(file="close.png")
+        suma_img = PhotoImage(file="sum.png")
+        minus_img = PhotoImage(file="minus.png")
 
         filemenu = Menu(menu, tearoff=False)
         menu.add_cascade(label='Plik', menu=filemenu)
@@ -46,6 +66,11 @@ class Program:
         filemenu.add_command(label='Zapisz', accelerator="Ctrl+Z", command=self.kliknij_zapisz, image=save_img, compound=LEFT)
         filemenu.add_separator()
         filemenu.add_command(label='Zamknij', accelerator="Ctrl+E", command=self.root.quit, image=close_img, compound=LEFT)
+        # deklaracja podmenu Dzialania na listwie
+        dzialaniamenu = Menu(menu, tearoff=False)
+        menu.add_cascade(label='Działania', menu=dzialaniamenu,)
+        dzialaniamenu.add_command(label='Dodawanie', accelerator="Ctrl+D", command=self.dodawanie, image=suma_img, compound=LEFT)
+        dzialaniamenu.add_command(label='Odejmowanie', accelerator="Ctrl+R", command=self.odejmowanie, image=minus_img, compound=LEFT)
         # deklaracja podmenu Pomoc na listwie
         helpmenu = Menu(menu, tearoff=False)
         menu.add_cascade(label='Pomoc', menu=helpmenu)
@@ -61,5 +86,20 @@ class Program:
 
     def kliknij_zapisz(self, event=None):
         print("Kliknąłeś zapisz")
+
+    def dodawanie(self, event=None):
+        print("dodawanie")
+
+    def odejmowanie(self, event=None):
+        print("odejmowanie")
+
+    def mnozenie(self, event=None):
+        print("mnozenie")
+
+    def dzielenie(self, event=None):
+        print("dzielenie")
+
+    def automat(self, event=None):
+        print("automat")
 
 start = Program()
