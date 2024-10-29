@@ -95,7 +95,11 @@ class Program:
         print("Kliknąłeś zapisz")
 
     def dodawanie(self, event=None):
-        print("dodawanie")
+        ramka = Frame(self.root, padx = 2, pady = 2)
+        ramka.grid(column=4)
+        tekst = Label(ramka, text="Jesteś w dziale \"Dodawanie\", muszę pobrać od Ciebie kilka istotnych informacji:", font =("Courier", 12))
+        tekst.pack()
+        
 
     def odejmowanie(self, event=None):
         print("odejmowanie")
