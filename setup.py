@@ -7,6 +7,7 @@ data rozpoczęcia: 27.10.2024
 '''
 
 from tkinter import *
+from tkinter import messagebox
 
 class Program:
     def __init__(self) -> None:        
@@ -14,13 +15,12 @@ class Program:
         self.root.title("Nauka liczenia v 2.0")
         self.root.geometry("800x600")
 
-        # deklaracja ramek
-        self.ramka = LabelFrame(self.root, padx = 2, pady = 2)
-        self.ramka.pack(padx=0, pady=2)  
-
-        self.ramka1 = LabelFrame(self.root, padx = 2, pady = 5)
-        self.ramka1.pack(padx=0, pady=3)
-        
+        # deklaracja zmiennych
+        self.imie_inp = StringVar()
+        self.wiek_inp = StringVar()
+        self.podstawa_inp = StringVar()
+        self.ilosc_inp = StringVar()
+                
         # menu na listwie górnej
         menu = Menu(self.root)
         self.root.config(menu=menu)
@@ -38,8 +38,8 @@ class Program:
         self.root.bind_all("<Control-E>", self.zamknij_program)
 
         # skrót klawiszowy dodawanie
-        self.root.bind_all("<Control-s>", self.dodawanie)
-        self.root.bind_all("<Control-S>", self.dodawanie)
+        self.root.bind_all("<Control-s>", self.dodawanie_menu)
+        self.root.bind_all("<Control-S>", self.dodawanie_menu)
 
         # skrót klawiszowy odejmowanie
         self.root.bind_all("<Control-r>", self.odejmowanie)
@@ -79,7 +79,7 @@ class Program:
         # deklaracja podmenu Dzialania na listwie
         dzialaniamenu = Menu(menu, tearoff=False)
         menu.add_cascade(label='Działania', menu=dzialaniamenu,)
-        dzialaniamenu.add_command(label='Dodawanie', accelerator="Ctrl+D", command=self.dodawanie, image=suma_img, compound=LEFT)
+        dzialaniamenu.add_command(label='Dodawanie', accelerator="Ctrl+D", command=self.dodawanie_menu, image=suma_img, compound=LEFT)
         dzialaniamenu.add_command(label='Odejmowanie', accelerator="Ctrl+R", command=self.odejmowanie, image=minus_img, compound=LEFT)
         dzialaniamenu.add_command(label='Mnożenie', accelerator="Ctrl+M", command=self.mnozenie, image=mnozenie_img, compound=LEFT)
         dzialaniamenu.add_command(label='Dzielenie', accelerator="Ctrl+D", command=self.dzielenie, image=dzielenie_img, compound=LEFT)
@@ -94,25 +94,43 @@ class Program:
 
     def zamknij_program(self, event=None):
         command=self.root.quit
+    
+    def wyczysc_pola(self, event=None):
+        self.input_imie.delete(0, END)
+        self.input_wiek.delete(0, END)
+        self.input_podstawa_dodawania.delete(0, END)
+        self.input_ilosc_dzialan.delete(0, END)
 
-    def info(self):
+    def dzialanie_dodawanie(self):
+        self.imie = self.imie_inp.get()
+        self.wiek = self.wiek_inp.get()
+        self.podstawa = self.podstawa_inp.get()
+        self.ilosc = self.ilosc_inp.get()
+        if self.imie=="" or self.wiek=="":
+            messagebox.showerror("Błąd", "Brakuje wartości w polu IMIE lub WIEK!!!")               
+            self.ramka.destroy()
+            self.ramka1.destroy()
+            
+            self.dodawanie_menu()
+        else:
+            try:  
+                self.wiek = int(self.wiek)            
+            except:
+                messagebox.showerror("Błąd", "Wiek nie jest cyfrą!!!")                           
+                self.ramka.destroy()
+                self.ramka1.destroy()
+                self.dodawanie_menu()   
+
+        try:
+            self.podstawa = int(self.podstawa)
+            self.ilosc = int(self.ilosc)
+        except:
+            self.podstawa = 50
+            self.ilosc = 100   
+
+        print(self.imie)
         
-        self.imie_text = Label(self.ramka1, text= "Twoje imie: ", font =("Courier", 11), justify=LEFT).grid(row=0, column=0)
-        self.input_imie = Text(self.ramka1, height = 1, width = 25, bg = "light yellow").grid(row=0, column=1)
-
-        self.wiek_text = Label(self.ramka1, text= "Ile masz lat: ", justify=LEFT, font =("Courier", 11)).grid(row=1, column=0)
-        self.input_wiek = Text(self.ramka1, height = 1, width = 25, bg = "light yellow").grid(row=1, column=1)
-
-        self.podstawa_dodawania_text = Label(self.ramka1, text= "Najwyższa podstawa działania: ", font =("Courier", 11)).grid(row=2, column=0)
-        self.input_podstawa_dodawania = Text(self.ramka1, height = 1, width = 25, bg = "light yellow").grid(row=2, column=1)
-
-        self.ilosc_dzialan_text = Label(self.ramka1, text = "Ilość działań:", justify=LEFT, font=("Courier", 11)).grid(row=3, column=0)
-        self.input_ilosc_dzialan = Text(self.ramka1, height = 1, width = 25, bg = "light yellow").grid(row=3, column=1)
-
-        self.ilosc_dzialan_text = Label(self.ramka1, text = "", justify=LEFT, font=("Courier", 11)).grid(row=4, column=0)
-
-        przycisk_1 = Button(self.ramka1, text="Zapisz, przejdź dalej", font =("Courier", 11, "bold"), foreground="white", background="red", justify="center").grid(row=5, column=0)
-        przycisk_2 = Button(self.ramka1, text="Wyczyść pola", font =("Courier", 11, "bold"), foreground="white", background="black", justify="center").grid(row=5, column=1)
+        
 
     def kliknij_wczytaj(self, event=None):
         print("Kliknąłeś otwórz")
@@ -120,11 +138,42 @@ class Program:
     def kliknij_zapisz(self, event=None):
         print("Kliknąłeś zapisz")
 
-    def dodawanie(self, event=None):   
-             
+    def dodawanie_menu(self, event=None):
+        self.ramka = LabelFrame(self.root, padx = 2, pady = 2)
+        self.ramka.pack(padx=0, pady=2)
+                       
         wstep_text = Label(self.ramka, text="Jesteś w dziale \"Dodawanie\"", font =("Courier", 16, "bold"), foreground="blue", justify="center")
-        wstep_text.pack(pady=5, padx=180)
-        self.info()        
+        wstep_text.pack(pady=5, padx=180)        
+
+        self.ramka1 = LabelFrame(self.root, text="Podaj informacje", fg = "green", padx = 2, pady = 5)
+        self.ramka1.pack(padx=0, pady=20) 
+
+        self.imie_text = Label(self.ramka1, text= "Twoje imie: ", font =("Courier", 11), justify=LEFT)
+        self.imie_text.grid(row=0, column=0)
+        self.input_imie = Entry(self.ramka1, textvariable=self.imie_inp, width = 25, bg = "light yellow")
+        self.input_imie.grid(row=0, column=1)
+
+        self.wiek_text = Label(self.ramka1, text= "Ile masz lat: ", justify=LEFT, font =("Courier", 11))
+        self.wiek_text.grid(row=1, column=0)
+        self.input_wiek = Entry(self.ramka1, textvariable=self.wiek_inp, width = 25, bg = "light yellow")
+        self.input_wiek.grid(row=1, column=1)
+
+        self.podstawa_dodawania_text = Label(self.ramka1, text= "Najwyższa podstawa działania: ", font =("Courier", 11))
+        self.podstawa_dodawania_text.grid(row=2, column=0)
+        self.input_podstawa_dodawania = Entry(self.ramka1, textvariable=self.podstawa_inp, width = 25, bg = "light yellow")
+        self.input_podstawa_dodawania.grid(row=2, column=1)
+
+        self.ilosc_dzialan_text = Label(self.ramka1, text = "Ilość działań:", justify=LEFT, font=("Courier", 11))
+        self.ilosc_dzialan_text.grid(row=3, column=0)
+        self.input_ilosc_dzialan = Entry(self.ramka1,textvariable=self.ilosc_inp, width = 25, bg = "light yellow")
+        self.input_ilosc_dzialan.grid(row=3, column=1)
+
+        self.ilosc_dzialan_text = Label(self.ramka1, text = "", justify=LEFT, font=("Courier", 11))
+        self.ilosc_dzialan_text.grid(row=4, column=0)
+
+        przycisk_1 = Button(self.ramka1, text="Zapisz, przejdź dalej", font =("Courier", 11, "bold"), foreground="white", background="red", justify="center", command=self.dzialanie_dodawanie).grid(row=5, column=0)
+        przycisk_2 = Button(self.ramka1, text="Wyczyść pola", font =("Courier", 11, "bold"), foreground="white", background="black", justify="center", command=self.wyczysc_pola).grid(row=5, column=1)   
+             
 
     def odejmowanie(self, event=None):
         print("odejmowanie")
