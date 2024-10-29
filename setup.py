@@ -14,6 +14,13 @@ class Program:
         self.root.title("Nauka liczenia v 2.0")
         self.root.geometry("800x600")
 
+        # deklaracja ramek
+        self.ramka = LabelFrame(self.root, padx = 2, pady = 2)
+        self.ramka.pack(padx=0, pady=2)  
+
+        self.ramka1 = LabelFrame(self.root, padx = 2, pady = 5)
+        self.ramka1.pack(padx=0, pady=3)
+        
         # menu na listwie górnej
         menu = Menu(self.root)
         self.root.config(menu=menu)
@@ -88,18 +95,36 @@ class Program:
     def zamknij_program(self, event=None):
         command=self.root.quit
 
+    def info(self):
+        
+        self.imie_text = Label(self.ramka1, text= "Twoje imie: ", font =("Courier", 11), justify=LEFT).grid(row=0, column=0)
+        self.input_imie = Text(self.ramka1, height = 1, width = 25, bg = "light yellow").grid(row=0, column=1)
+
+        self.wiek_text = Label(self.ramka1, text= "Ile masz lat: ", justify=LEFT, font =("Courier", 11)).grid(row=1, column=0)
+        self.input_wiek = Text(self.ramka1, height = 1, width = 25, bg = "light yellow").grid(row=1, column=1)
+
+        self.podstawa_dodawania_text = Label(self.ramka1, text= "Najwyższa podstawa działania: ", font =("Courier", 11)).grid(row=2, column=0)
+        self.input_podstawa_dodawania = Text(self.ramka1, height = 1, width = 25, bg = "light yellow").grid(row=2, column=1)
+
+        self.ilosc_dzialan_text = Label(self.ramka1, text = "Ilość działań:", justify=LEFT, font=("Courier", 11)).grid(row=3, column=0)
+        self.input_ilosc_dzialan = Text(self.ramka1, height = 1, width = 25, bg = "light yellow").grid(row=3, column=1)
+
+        self.ilosc_dzialan_text = Label(self.ramka1, text = "", justify=LEFT, font=("Courier", 11)).grid(row=4, column=0)
+
+        przycisk_1 = Button(self.ramka1, text="Zapisz, przejdź dalej", font =("Courier", 11, "bold"), foreground="white", background="red", justify="center").grid(row=5, column=0)
+        przycisk_2 = Button(self.ramka1, text="Wyczyść pola", font =("Courier", 11, "bold"), foreground="white", background="black", justify="center").grid(row=5, column=1)
+
     def kliknij_wczytaj(self, event=None):
         print("Kliknąłeś otwórz")
 
     def kliknij_zapisz(self, event=None):
         print("Kliknąłeś zapisz")
 
-    def dodawanie(self, event=None):
-        ramka = Frame(self.root, padx = 2, pady = 2)
-        ramka.grid(column=4)
-        tekst = Label(ramka, text="Jesteś w dziale \"Dodawanie\", muszę pobrać od Ciebie kilka istotnych informacji:", font =("Courier", 12))
-        tekst.pack()
-        
+    def dodawanie(self, event=None):   
+             
+        wstep_text = Label(self.ramka, text="Jesteś w dziale \"Dodawanie\"", font =("Courier", 16, "bold"), foreground="blue", justify="center")
+        wstep_text.pack(pady=5, padx=180)
+        self.info()        
 
     def odejmowanie(self, event=None):
         print("odejmowanie")
